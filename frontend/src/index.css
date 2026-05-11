@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0D6731;
+  --color-primary-dark: #095224;
+  --color-primary-light: #12893f;
+  --color-primary-50: #f0faf4;
+  --color-primary-100: #dcf5e7;
+  --color-primary-200: #b8eacf;
+  --color-primary-600: #0D6731;
+  --color-primary-700: #095224;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f8faf9;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #0D6731; border-radius: 3px; }
+
+/* Horizontal bounce for mobile nav hint arrow */
+@keyframes bounceX {
+  0%, 100% { transform: translateX(0); opacity: 1; }
+  50%       { transform: translateX(4px); opacity: 0.5; }
+}
+.animate-bounce-x {
+  animation: bounceX 0.9s ease-in-out infinite;
+}
+
+/* Vertical bounce for scroll down hint */
+@keyframes bounceY {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(5px); opacity: 0.4; }
+}
+.animate-bounce-y {
+  animation: bounceY 1s ease-in-out infinite;
+}
+
+/* Countdown flip animation */
+@keyframes flipIn {
+  from { transform: rotateX(-90deg); opacity: 0; }
+  to   { transform: rotateX(0deg);   opacity: 1; }
+}
+.flip-anim {
+  animation: flipIn 0.35s ease-out;
+}
