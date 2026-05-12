@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { X, Users, Search, Download, Trash2, ChevronUp, ChevronDown, LayoutGrid, Table2, RefreshCw, AlertCircle, Eye } from 'lucide-react'
+import { X, Users, Search, Download, Trash2, ChevronUp, ChevronDown, LayoutGrid, Table2, RefreshCw, AlertCircle, Eye, Home } from 'lucide-react'
 
 import API from '../config'
 
@@ -190,6 +190,13 @@ export default function AdminPortal({ onClose }) {
       {/* Header */}
       <div className="bg-white border-b border-gray-200 px-4 sm:px-8 py-4 flex items-center justify-between gap-4 flex-shrink-0">
         <div className="flex items-center gap-3">
+          <button
+            onClick={onClose}
+            className="flex items-center gap-2 px-5 py-2.5 text-base font-medium text-white bg-[#0D6731] border border-[#0D6731] rounded-lg hover:bg-white hover:text-[#0D6731] transition-all duration-200 mr-2 shadow-sm cursor-pointer"
+          >
+            <Home size={18} />
+            Home
+          </button>
           <div className="w-9 h-9 rounded-lg bg-[#0D6731]/10 flex items-center justify-center">
             <Users size={18} className="text-[#0D6731]" />
           </div>
@@ -285,20 +292,20 @@ export default function AdminPortal({ onClose }) {
         {view === 'cards' && paged.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {paged.map(r => (
-              <div key={r.id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-5 hover:shadow-md transition-shadow relative group">
-                <div className="absolute top-3 right-3 flex gap-1 opacity-0 group-hover:opacity-100">
+              <div key={r.id} className="bg-white rounded-xl border border-[#0D6731] shadow-sm p-5 hover:shadow-md transition-shadow relative group">
+                <div className="absolute top-3 right-3 flex gap-1">
                   <button
                     onClick={() => setPreviewId(r.id)}
-                    className="p-1.5 rounded-lg text-gray-300 hover:text-[#0D6731] hover:bg-[#0D6731]/10 transition"
+                    className="p-2 rounded-lg text-yellow-500 hover:text-yellow-600 hover:bg-yellow-100 transition-all duration-200 hover:scale-110 cursor-pointer"
                     title="Preview ID Card"
                   >
-                    <Eye size={14} />
+                    <Eye size={16} />
                   </button>
                   <button
                     onClick={() => setConfirmId(r.id)}
-                    className="p-1.5 rounded-lg text-gray-300 hover:text-red-500 hover:bg-red-50 transition"
+                    className="p-2 rounded-lg text-red-500 hover:text-red-600 hover:bg-red-100 transition-all duration-200 hover:scale-110 cursor-pointer"
                   >
-                    <Trash2 size={14} />
+                    <Trash2 size={16} />
                   </button>
                 </div>
 
@@ -332,7 +339,7 @@ export default function AdminPortal({ onClose }) {
 
         {/* Table View */}
         {view === 'table' && paged.length > 0 && (
-          <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-x-auto">
+          <div className="bg-white rounded-xl border border-[#0D6731] shadow-sm overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100">
@@ -365,16 +372,16 @@ export default function AdminPortal({ onClose }) {
                       <div className="flex items-center justify-center gap-1">
                         <button
                           onClick={() => setPreviewId(r.id)}
-                          className="p-1.5 rounded-lg text-gray-300 hover:text-[#0D6731] hover:bg-[#0D6731]/10 transition"
+                          className="p-2 rounded-lg text-yellow-500 hover:text-yellow-600 hover:bg-yellow-100 transition-all duration-200 hover:scale-110 cursor-pointer"
                           title="Preview ID Card"
                         >
-                          <Eye size={14} />
+                          <Eye size={16} />
                         </button>
                         <button
                           onClick={() => setConfirmId(r.id)}
-                          className="p-1.5 rounded-lg text-gray-300 hover:text-red-500 hover:bg-red-50 transition"
+                          className="p-2 rounded-lg text-red-500 hover:text-red-600 hover:bg-red-100 transition-all duration-200 hover:scale-110 cursor-pointer"
                         >
-                          <Trash2 size={14} />
+                          <Trash2 size={16} />
                         </button>
                       </div>
                     </td>

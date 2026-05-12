@@ -47,7 +47,7 @@ const createRegistration = async (req, res) => {
       return res.status(422).json({ success: false, message: messages[0], errors: messages })
     }
     console.error('createRegistration error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message ? `Server Error: ${error.message}` : 'An unexpected server error occurred during registration.' })
   }
 }
 
@@ -84,7 +84,7 @@ const getAllRegistrations = async (req, res) => {
     })
   } catch (error) {
     console.error('getAllRegistrations error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message ? `Server Error: ${error.message}` : 'An unexpected server error occurred while fetching registrations.' })
   }
 }
 
@@ -98,7 +98,7 @@ const getRegistrationById = async (req, res) => {
     return res.status(200).json({ success: true, data: registration })
   } catch (error) {
     console.error('getRegistrationById error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message ? `Server Error: ${error.message}` : 'An unexpected server error occurred while fetching the registration.' })
   }
 }
 
@@ -123,7 +123,7 @@ const deleteRegistration = async (req, res) => {
     return res.status(200).json({ success: true, message: 'Registration deleted' })
   } catch (error) {
     console.error('deleteRegistration error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message ? `Server Error: ${error.message}` : 'An unexpected server error occurred while deleting the registration.' })
   }
 }
 
@@ -153,7 +153,7 @@ const getIdCardPdf = async (req, res) => {
     fs.createReadStream(pdfPath).pipe(res)
   } catch (error) {
     console.error('getIdCardPdf error:', error)
-    return res.status(500).json({ success: false, message: 'Internal server error' })
+    return res.status(500).json({ success: false, message: error.message ? `Server Error: ${error.message}` : 'An unexpected server error occurred while fetching the ID card PDF.' })
   }
 }
 

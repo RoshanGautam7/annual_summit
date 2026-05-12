@@ -21,7 +21,7 @@ function FlipUnit({ value, label }) {
 
   return (
     <div className="flex flex-col items-center gap-1.5">
-      <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl px-3 py-2 sm:px-5 sm:py-3 min-w-[56px] sm:min-w-[76px] text-center shadow-lg">
+      <div className="relative bg-white/10 backdrop-blur-sm border-2 border-yellow-400/80 rounded-xl px-3 py-2 sm:px-5 sm:py-3 min-w-[56px] sm:min-w-[76px] text-center shadow-[0_0_15px_rgba(250,204,21,0.15)]">
         <span
           key={animKey}
           className="block text-3xl sm:text-5xl font-bold text-white tabular-nums flip-anim"
@@ -73,7 +73,6 @@ export default function Countdown() {
         <Separator />
         <FlipUnit value={pad(timeLeft.seconds)} label="Seconds" />
       </div>
-      <p className="text-white/50 text-xs">22nd May 2026 · Port Moresby, PNG</p>
     </div>
   )
 }

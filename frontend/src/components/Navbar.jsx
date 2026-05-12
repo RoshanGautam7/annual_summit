@@ -10,18 +10,20 @@ export default function Navbar({ onAdminClick }) {
         <div className="flex items-center justify-between h-16 sm:h-20">
 
           {/* Logo — event banner image */}
-          <div className="flex items-center flex-shrink-0 h-full py-2">
+          <a href="/" className="flex items-center flex-shrink-0 h-full py-2 hover:opacity-90 transition-opacity cursor-pointer">
             <img
-              src="/event-logo.jpeg"
+              src="/png.png"
               alt="PNG Diwai Holdings – Annual Industry Summit 2026"
-              className="h-full w-auto object-contain max-w-[220px] sm:max-w-[300px]"
+              className="h-full w-auto object-contain max-w-[240px] sm:max-w-[320px]"
             />
-          </div>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="#"
+              href="https://register.pngdhl.com/uploads/program.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white border border-white/40 rounded-lg hover:bg-white/15 transition-all duration-200"
             >
               <Download size={15} />
@@ -29,7 +31,7 @@ export default function Navbar({ onAdminClick }) {
             </a>
             <button
               onClick={onAdminClick}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0D6731] bg-white rounded-lg hover:bg-white/90 transition-all duration-200 shadow"
+              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#0D6731] bg-white rounded-lg hover:bg-white/90 transition-all duration-200 shadow cursor-pointer"
             >
               <Lock size={15} />
               Admin Portal
@@ -58,7 +60,9 @@ export default function Navbar({ onAdminClick }) {
         {menuOpen && (
           <div className="md:hidden pb-4 pt-2 border-t border-white/10 flex flex-col gap-2">
             <a
-              href="#"
+              href="https://register.pngdhl.com/uploads/program.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-white border border-white/40 rounded-lg hover:bg-white/15 transition-all"
               onClick={() => setMenuOpen(false)}
             >
@@ -67,7 +71,7 @@ export default function Navbar({ onAdminClick }) {
             </a>
             <button
               onClick={() => { setMenuOpen(false); onAdminClick() }}
-              className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-[#0D6731] bg-white rounded-lg hover:bg-white/90 transition-all shadow"
+              className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-[#0D6731] bg-white rounded-lg hover:bg-white/90 transition-all shadow cursor-pointer"
             >
               <Lock size={15} />
               Admin Portal

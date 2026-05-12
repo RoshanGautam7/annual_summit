@@ -5,25 +5,25 @@ import API from '../config'
 const INITIAL = { name: '', organization: '', title: '', businessType: '', email: '', phone: '' }
 
 export default function RegistrationForm() {
-  const [form, setForm]               = useState(INITIAL)
-  const [photo, setPhoto]             = useState(null)
-  const [preview, setPreview]         = useState(null)
-  const [errors, setErrors]           = useState({})
+  const [form, setForm] = useState(INITIAL)
+  const [photo, setPhoto] = useState(null)
+  const [preview, setPreview] = useState(null)
+  const [errors, setErrors] = useState({})
   const [serverError, setServerError] = useState('')
-  const [loading, setLoading]         = useState(false)
-  const [submitted, setSubmitted]     = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
   const fileRef = useRef()
 
   function validate() {
     const e = {}
-    if (!form.name.trim())         e.name         = 'Full name is required'
+    if (!form.name.trim()) e.name = 'Full name is required'
     if (!form.organization.trim()) e.organization = 'Organization is required'
-    if (!form.title.trim())        e.title        = 'Title / designation is required'
+    if (!form.title.trim()) e.title = 'Title / designation is required'
     if (!form.businessType.trim()) e.businessType = 'Type of business is required'
-    if (!form.email.trim())        e.email        = 'Email address is required'
+    if (!form.email.trim()) e.email = 'Email address is required'
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = 'Enter a valid email'
-    if (!form.phone.trim())        e.phone        = 'Phone number is required'
-    if (!photo)                    e.photo        = 'Please upload a photo'
+    if (!form.phone.trim()) e.phone = 'Phone number is required'
+    if (!photo) e.photo = 'Please upload a photo'
     return e
   }
 
@@ -31,7 +31,7 @@ export default function RegistrationForm() {
     const { name, value } = e.target
     setForm(f => ({ ...f, [name]: value }))
     if (errors[name]) setErrors(er => ({ ...er, [name]: '' }))
-    if (serverError)  setServerError('')
+    if (serverError) setServerError('')
   }
 
   function handlePhotoChange(e) {
@@ -63,15 +63,15 @@ export default function RegistrationForm() {
     setServerError('')
     try {
       const formData = new FormData()
-      formData.append('name',         form.name.trim())
+      formData.append('name', form.name.trim())
       formData.append('organization', form.organization.trim())
-      formData.append('title',        form.title.trim())
+      formData.append('title', form.title.trim())
       formData.append('businessType', form.businessType.trim())
-      formData.append('email',        form.email.trim())
-      formData.append('phone',        form.phone.trim())
-      formData.append('photo',        photo)
+      formData.append('email', form.email.trim())
+      formData.append('phone', form.phone.trim())
+      formData.append('photo', photo)
 
-      const res  = await fetch(`${API}/registrations`, { method: 'POST', body: formData })
+      const res = await fetch(`${API}/registrations`, { method: 'POST', body: formData })
       const data = await res.json()
       if (!res.ok) { setServerError(data.message || 'Registration failed.'); return }
       setSubmitted(true)
@@ -90,11 +90,11 @@ export default function RegistrationForm() {
         </div>
         <h3 className="text-xl font-bold text-gray-800">Registration Successful!</h3>
         <p className="text-gray-500 text-sm max-w-xs">
-          Thank you, <strong>{form.name}</strong>. Your seat has been reserved for the PNG Diwai Holdings Annual Industry Summit 2026.
+          Thank you, <strong>{form.name}</strong>. You have successfully registered for the Launching Event of PNG Diwai Holdings Limited.
         </p>
         <div className="flex items-center gap-2 bg-[#0D6731]/8 border border-[#0D6731]/20 text-[#0D6731] text-sm font-medium rounded-lg px-4 py-2.5">
           <MailCheck size={15} className="flex-shrink-0" />
-          You will receive an email shortly at <strong className="ml-1">{form.email}</strong>
+          You will receive an email at: <strong className="ml-1">{form.email}</strong>
         </div>
       </div>
     )
@@ -146,20 +146,19 @@ export default function RegistrationForm() {
             />
             <label
               htmlFor="photo-upload"
-              className={`flex flex-col items-center justify-center w-full py-4 px-3 border-2 border-dashed rounded-xl cursor-pointer transition-all text-center ${
-                errors.photo
-                  ? 'border-red-400 bg-red-50'
-                  : preview
-                    ? 'border-[#0D6731]/40 bg-[#0D6731]/5'
-                    : 'border-gray-200 bg-gray-50 hover:border-[#0D6731]/50 hover:bg-[#0D6731]/5'
-              }`}
+              className={`flex flex-col items-center justify-center w-full py-4 px-3 border-2 border-dashed rounded-xl cursor-pointer transition-all text-center ${errors.photo
+                ? 'border-red-400 bg-red-50'
+                : preview
+                  ? 'border-[#0D6731]/40 bg-[#0D6731]/5'
+                  : 'border-gray-300 bg-gray-50 hover:border-[#0D6731]/50 hover:bg-[#0D6731]/5'
+                }`}
             >
               {preview ? (
                 <span className="text-xs text-[#0D6731] font-semibold truncate max-w-full px-2">✓ {photo?.name}</span>
               ) : (
                 <>
                   <Camera size={18} className="text-gray-400 mb-1" />
-                  <span className="text-xs text-gray-500 font-medium">Click to upload photo</span>
+                  <span className="text-sm text-gray-500 font-medium">Click to upload your photo</span>
                   <span className="text-[10px] text-gray-400 mt-0.5">JPEG · PNG · WebP &nbsp;·&nbsp; Max 5 MB</span>
                 </>
               )}
@@ -221,11 +220,10 @@ export default function RegistrationForm() {
 }
 
 function inputCls(err) {
-  return `w-full pl-9 pr-3 py-2.5 rounded-lg border text-sm outline-none transition-all duration-150 ${
-    err
-      ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-1 focus:ring-red-200'
-      : 'border-gray-200 bg-gray-50 focus:border-[#0D6731] focus:ring-1 focus:ring-[#0D6731]/20 focus:bg-white'
-  }`
+  return `w-full pl-9 pr-3 py-2.5 rounded-lg border text-sm outline-none transition-all duration-150 ${err
+    ? 'border-red-400 bg-red-50 focus:border-red-500 focus:ring-1 focus:ring-red-200'
+    : 'border-[#0D6731]/60 bg-gray-50 focus:border-[#0D6731] focus:ring-1 focus:ring-[#0D6731]/20 focus:bg-white'
+    }`
 }
 
 function Field({ icon, label, error, children }) {

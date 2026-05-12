@@ -4,9 +4,16 @@ const cors = require('cors')
 const helmet = require('helmet')
 const morgan = require('morgan')
 const path = require('path')
+const fs = require('fs')
 
 const { sequelize } = require('./models')
 const registrationRoutes = require('./routes/registrationRoutes')
+
+// Ensure upload directories exist
+const uploadsDir = path.join(__dirname, 'uploads')
+const idCardsDir = path.join(uploadsDir, 'idcards')
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true })
+if (!fs.existsSync(idCardsDir)) fs.mkdirSync(idCardsDir, { recursive: true })
 const authRoutes = require('./routes/authRoutes')
 const { errorHandler, notFound } = require('./middleware/errorHandler')
 

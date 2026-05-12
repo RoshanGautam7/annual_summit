@@ -3,8 +3,8 @@ const fs = require('fs')
 const path = require('path')
 
 const transporter = nodemailer.createTransport({
-  host:   process.env.EMAIL_HOST,
-  port:   parseInt(process.env.EMAIL_PORT),
+  host: process.env.EMAIL_HOST,
+  port: parseInt(process.env.EMAIL_PORT),
   secure: process.env.EMAIL_SECURE === 'true',
   auth: {
     user: process.env.EMAIL_USER,
@@ -30,7 +30,7 @@ function buildHtml(reg) {
             <td style="background:#04572f;padding:36px 40px 28px;text-align:center;">
               <p style="margin:0 0 6px;color:#f4b400;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Launching of</p>
               <h1 style="margin:0;color:#ffffff;font-size:26px;font-weight:900;line-height:1.2;text-transform:uppercase;">PNG Diwai Holding Limited</h1>
-              <p style="margin:10px 0 0;color:#a8d5b5;font-size:14px;">Industry Summit &mdash; May 22nd, 2026</p>
+              <p style="margin:10px 0 0;color:#a8d5b5;font-size:14px;">Building Tomorrow in PNG, Today &mdash; May 22nd, 2026</p>
               <div style="margin:20px auto 0;width:48px;height:4px;background:#f4b400;border-radius:2px;"></div>
             </td>
           </tr>
@@ -58,12 +58,12 @@ function buildHtml(reg) {
             <td style="padding:24px 40px 0;">
               <p style="margin:0 0 16px;color:#04572f;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Your Registration Details</p>
               <table width="100%" cellpadding="0" cellspacing="0">
-                ${detailRow('Full Name',       reg.name)}
-                ${detailRow('Organization',    reg.organization)}
-                ${detailRow('Title',           reg.title)}
-                ${detailRow('Type of Business',reg.business_type)}
-                ${detailRow('Email',           reg.email)}
-                ${detailRow('Phone',           reg.phone)}
+                ${detailRow('Full Name', reg.name)}
+                ${detailRow('Organization', reg.organization)}
+                ${detailRow('Title', reg.title)}
+                ${detailRow('Type of Business', reg.business_type)}
+                ${detailRow('Email', reg.email)}
+                ${detailRow('Phone', reg.phone)}
               </table>
             </td>
           </tr>
@@ -84,7 +84,6 @@ function buildHtml(reg) {
                     <p style="margin:0 0 4px;color:#04572f;font-size:14px;font-weight:700;">Your ID Card is Attached</p>
                     <p style="margin:0;color:#555;font-size:13px;line-height:1.6;">
                       Please find your personalised ID card attached to this email as a PDF.
-                      Bring a printed or digital copy on the day of the event for check-in.
                     </p>
                   </td>
                 </tr>
@@ -102,7 +101,8 @@ function buildHtml(reg) {
                     <p style="margin:0;color:#555;font-size:13px;line-height:1.6;">
                       <strong>Date:</strong> May 22nd, 2026<br/>
                       <strong>Organiser:</strong> PNG Diwai Holding Limited<br/>
-                      <strong>Website:</strong> <a href="https://forestryforum.pngdhl.com/" style="color:#04572f;">forestryforum.pngdhl.com</a>
+                      <strong>Location:</strong> APEC Haus, Port Moresby<br/>
+                      <strong>Program Details:</strong> <a href="https://register.pngdhl.com/uploads/program.pdf" style="color:#04572f;">Full Program Brochure</a>
                     </p>
                   </td>
                 </tr>
@@ -166,10 +166,10 @@ async function sendRegistrationEmail(registration, pdfPath) {
   }
 
   await transporter.sendMail({
-    from:    `"PNG Diwai Holding Limited" <${process.env.EMAIL_USER}>`,
-    to:      registration.email,
+    from: `"PNG Diwai Holding Limited" <${process.env.EMAIL_USER}>`,
+    to: registration.email,
     subject: `Your PNGDHL Registration Confirmed – ID Card Enclosed`,
-    html:    buildHtml(registration),
+    html: buildHtml(registration),
     attachments,
   })
 }

@@ -37,9 +37,9 @@ export default function HeroSection() {
           style={{ opacity: fade ? 1 : 0 }}
         />
 
-        {/* Overlay — top bleeds from navbar #0D6731, fades to deep green/black */}
-        <div className="absolute inset-0 bg-[#0D6731]/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0D6731] via-[#0D6731]/50 to-black/70" />
+        {/* Dark overlay for text legibility without the green tint */}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90 pointer-events-none" />
 
         {/* Dot pattern */}
         <div
@@ -62,23 +62,35 @@ export default function HeroSection() {
         </div>
 
         {/* Hero content */}
-        <div className="relative z-10 flex flex-col items-center gap-7 text-center w-full max-w-3xl mx-auto px-6 py-16">
+        <div className="relative z-10 flex flex-col items-center gap-7 text-center w-full max-w-3xl mx-auto px-6 pt-8 pb-16">
 
-          {/* Event logo */}
-          <img
-            src="/event-logo.jpeg"
-            alt="Event logos"
-            className="w-full max-w-sm rounded-xl opacity-90 shadow-lg"
-          />
+          {/* Event logos */}
+          <div className="flex items-center justify-center gap-6 sm:gap-10 w-full max-w-2xl mx-auto -mb-12 -translate-y-[45px]">
+            <img
+              src="/pngfa.webp"
+              alt="PNGFA Logo"
+              className="w-28 sm:w-36 h-auto object-contain translate-y-[45px]"
+            />
+            <img
+              src="/govt.webp"
+              alt="Government Logo"
+              className="w-40 sm:w-56 h-auto object-contain"
+            />
+            <img
+              src="/png.webp"
+              alt="PNG Diwai Holdings Logo"
+              className="w-28 sm:w-36 h-auto object-contain translate-y-[45px]"
+            />
+          </div>
 
           {/* Badge */}
           <div className="flex flex-col items-center gap-3">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5">
+            {/* <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               <span className="text-white/90 text-xs font-medium uppercase tracking-widest">
                 Registration Open
               </span>
-            </div>
+            </div> */}
 
             {/* Scroll down hint */}
             <button
@@ -86,34 +98,36 @@ export default function HeroSection() {
               className="flex flex-col items-center gap-1 group cursor-pointer"
             >
               <span className="text-white/80 text-base font-semibold tracking-wide group-hover:text-white transition-colors">
-                Scroll down to register
+                SCROLL DOWN TO REGISTER
               </span>
-              <ChevronDown size={28} className="text-white/80 group-hover:text-white transition-colors animate-bounce-y" />
+              <ChevronDown size={56} className="text-yellow-400 group-hover:text-yellow-300 drop-shadow-md transition-colors animate-bounce-y" />
             </button>
           </div>
 
           {/* Title */}
-          <div className="flex flex-col gap-3">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight drop-shadow-lg">
-              Annual Industry<br />
-              <span className="text-green-300">Summit 2026</span>
+          <div className="flex flex-col gap-3 -mt-2">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold text-white leading-tight tracking-tight drop-shadow-lg whitespace-nowrap">
+              PNG Diwai Holdings Limited Goes Live
+              <span className="block mt-2 sm:mt-4 text-xl sm:text-3xl md:text-4xl lg:text-5xl bg-gradient-to-r from-yellow-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] whitespace-nowrap">
+                Building Tomorrow in PNG, Today
+              </span>
             </h1>
-            <p className="text-white/75 text-sm sm:text-lg max-w-xl mx-auto leading-relaxed">
+            {/* <p className="text-white/75 text-sm sm:text-lg max-w-xl mx-auto leading-relaxed">
               PNG Diwai Holdings Limited invites industry leaders, government officials, and partners to our flagship annual summit.
-            </p>
+            </p> */}
           </div>
 
           {/* Meta pills */}
-          <div className="flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
-            <span className="flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-white/85 backdrop-blur-sm">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-5 text-base sm:text-lg mt-3">
+            <span className="flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-full px-6 py-3 text-white/95 backdrop-blur-sm shadow-md font-semibold">
               📅 22nd May 2026
             </span>
-            <span className="flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-white/85 backdrop-blur-sm">
-              📍 Port Moresby, PNG
+            <span className="flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-full px-6 py-3 text-white/95 backdrop-blur-sm shadow-md font-semibold">
+              📍 Apec Haus, Port Moresby
             </span>
-            <span className="flex items-center gap-1.5 bg-white/10 border border-white/15 rounded-full px-4 py-2 text-white/85 backdrop-blur-sm">
+            {/* <span className="flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-full px-6 py-3 text-white/95 backdrop-blur-sm shadow-md font-semibold">
               🌿 Forestry &amp; Industry
-            </span>
+            </span> */}
           </div>
 
           {/* Divider */}
@@ -149,8 +163,8 @@ export default function HeroSection() {
             <span className="inline-block bg-white/10 backdrop-blur-sm text-white text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full border border-white/20 mb-3">
               Secure Your Seat
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">Register Your Attendance</h2>
-            <p className="text-white/70 mt-2 text-sm sm:text-base">Fill in your details below to confirm your place at the summit.</p>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-white">Register For The Event</h2>
+            <p className="text-white/70 mt-2 text-sm sm:text-base">Fill in your details below to register for the event.</p>
           </div>
 
           {/* Form card */}
@@ -162,7 +176,6 @@ export default function HeroSection() {
           {/* Trust badges */}
           <div className="mt-6 flex items-center justify-center gap-6 text-xs text-white/60">
             <span>🔒 Secure</span>
-            <span>✅ Free Entry</span>
             <span>📋 Instant Confirmation</span>
           </div>
         </div>
